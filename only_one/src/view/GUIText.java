@@ -18,6 +18,7 @@ public class GUIText extends JPanel {
 	
 	public void addText(List<String> list)
 	{
+		this.removeAll();
 		System.out.println("TEST");
 		int i = 0;
 		for (String word : list) {
