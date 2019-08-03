@@ -16,7 +16,7 @@ public class SceneImpl implements Scene{
 	String musicLocation;
 	
 	boolean returnScene;
-	List<String> text;
+	List<Word> text;
 	String image;
 	
 	Map<Integer, String> wordToScene;
@@ -36,7 +36,7 @@ public class SceneImpl implements Scene{
 		
 	}
 	
-	public List<String> getText() throws FileNotFoundException {
+	public List<Word> getText() throws FileNotFoundException {
 		return text;
 	}
 	
@@ -106,15 +106,15 @@ public class SceneImpl implements Scene{
 		return image;
 	}
 	
-	private List<String> textStringToList(String text) {
+	private List<Word> textStringToList(String text) {
 		
 		String[] textArray = text.split(" ");
-		List<String> wordList = new ArrayList<String>();
+		List<Word> wordList = new ArrayList<Word>();
 		
 		int i = 0;
 		for(String string : textArray) {
 			if(string.charAt(0) != '{' ) {
-				wordList.add(string);
+				wordList.add(new Word(string, i));
 				++i;
 			}else {
 				String filename = string.substring(1, string.indexOf('}'));

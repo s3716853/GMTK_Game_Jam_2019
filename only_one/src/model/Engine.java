@@ -40,8 +40,8 @@ public class Engine implements GameEngine{
 
 
 	@Override
-	public List<String> getSceneText() {
-		List<String> text = null;
+	public List<Word> getSceneText() {
+		List<Word> text = null;
 		
 		try {
 			text = currentScene.getText();

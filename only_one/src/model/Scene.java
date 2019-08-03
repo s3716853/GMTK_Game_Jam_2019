@@ -3,10 +3,11 @@ package model;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import model.Word;
 
 public interface Scene {
 	
-	public List<String> getText() throws FileNotFoundException;
+	public List<Word> getText() throws FileNotFoundException;
 	
 	public String getImage() throws FileNotFoundException;
 	
