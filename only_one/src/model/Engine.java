@@ -12,12 +12,12 @@ public class Engine implements GameEngine{
 	 * that does not go down its own path, but returns you to the
 	 * main conversation after
 	 */
-	Deque<SceneImpl> sceneBacklog;
+	Deque<Scene> sceneBacklog;
 	Scene currentScene = null;
 	
 	
 	public Engine() {
-		sceneBacklog = new ArrayDeque<SceneImpl>();
+		sceneBacklog = new ArrayDeque<Scene>();
 		currentScene = null;
 	}
 	
@@ -52,7 +52,12 @@ public class Engine implements GameEngine{
 	@Override
 	public void wordSelected(int wordNumber) {
 		String filename = currentScene.getSceneFileName(wordNumber);
+		Scene nextScene = new SceneImpl(filename);
+		if(nextScene.getReturn()) {
+			sceneBacklog.add(currentScene);
+		}
 		
+		currentScene = nextScene;
 	}
 	
 	
