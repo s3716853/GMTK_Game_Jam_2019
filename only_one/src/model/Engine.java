@@ -20,7 +20,7 @@ public class Engine implements GameEngine{
 	
 	public Engine(ViewModel vm) {
 		sceneBacklog = new ArrayDeque<Scene>();
-		currentScene = new SceneImpl("test_text");
+		currentScene = new SceneImpl("intro_01");
 		
 		vm.setEngine(this);
 	}
@@ -56,12 +56,20 @@ public class Engine implements GameEngine{
 	@Override
 	public void wordSelected(int wordNumber) {
 		String filename = currentScene.getSceneFileName(wordNumber);
-		Scene nextScene = new SceneImpl(filename);
-		if(nextScene.getReturn()) {
-			sceneBacklog.add(currentScene);
+		if(filename == "return") {
+			Scene nextScene = sceneBacklog.pollFirst();
+			while(nextScene.getReturn() == true) {
+				nextScene = sceneBacklog.pollFirst();
+			}
+		}else {
+			Scene nextScene = new SceneImpl(filename);
+			if(nextScene.getReturn()) {
+				sceneBacklog.add(currentScene);
+			}
+			
+			currentScene = nextScene;		
 		}
 		
-		currentScene = nextScene;
 	}
 	
 	
