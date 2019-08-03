@@ -6,6 +6,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import model.GameEngine;
+import model.Word;
 import viewmodel.ViewModel;
 
 @SuppressWarnings("serial")
@@ -31,10 +32,10 @@ public class GUIFrame extends JFrame {
 		vm.initilise();
 	}
 	
-	public void newScene(String visuals, List<String> speech) {
+	public void newScene(String visuals, List<Word> list) {
 		System.out.println(visuals);
-		System.out.println(speech);
-		text.addText(speech);
+		System.out.println(list);
+		text.addText(list);
 		graphics.changeText(visuals);
 		revalidate();
 	}
