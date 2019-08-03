@@ -119,6 +119,7 @@ public class SceneImpl implements Scene{
 			}else {
 				String filename = string.substring(1, string.indexOf('}'));
 				wordToScene.put(i-1, filename);
+				wordList.get(i-1).setClickable();
 			}
 		}
 		
