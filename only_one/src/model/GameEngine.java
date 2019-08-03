@@ -6,7 +6,7 @@ public interface GameEngine {
 
 	public String getSceneImage();
 	
-	public List<String> getSceneText();
+	public List<Word> getSceneText();
 	
 	public void wordSelected(int wordNumber);
 	
