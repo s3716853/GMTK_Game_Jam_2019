@@ -5,6 +5,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+import viewmodel.ViewModel;
+
 public class Engine implements GameEngine{
 	
 	/*
@@ -16,9 +18,11 @@ public class Engine implements GameEngine{
 	Scene currentScene = null;
 	
 	
-	public Engine() {
+	public Engine(ViewModel vm) {
 		sceneBacklog = new ArrayDeque<Scene>();
-		currentScene = null;
+		currentScene = new SceneImpl("test_text");
+		
+		vm.setEngine(this);
 	}
 	
 	@Override
