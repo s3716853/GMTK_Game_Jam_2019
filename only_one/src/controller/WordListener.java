@@ -5,16 +5,21 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import viewmodel.ViewModel;
+
 public class WordListener implements MouseListener {
 	Component comp;
-	public WordListener(Component comp) {
+	ViewModel vm;
+	int index;
+	public WordListener(ViewModel vm, Component comp, int index) {
 		this.comp = comp;
+		this.vm = vm;
+		this.index = index;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		vm.wordSelected(index);
 	}
 
 	@Override

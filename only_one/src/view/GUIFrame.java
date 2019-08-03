@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.GridLayout;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -12,14 +11,16 @@ import viewmodel.ViewModel;
 @SuppressWarnings("serial")
 public class GUIFrame extends JFrame {
 
-	GUIPanel graphics = new GUIPanel();
-	GUIText text = new GUIText();
+	GUIPanel graphics;
+	GUIText text;
 	ViewModel vm;
 	
 	public GUIFrame(GameEngine engine) {
 		vm = new ViewModel(this, engine);
 		setBounds(100, 100, 800, 600);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+		graphics = new GUIPanel();
+		text = new GUIText(vm);
 		add(graphics);
 		add(text);
 		
