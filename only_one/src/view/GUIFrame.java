@@ -6,13 +6,18 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
+import model.GameEngine;
+import viewmodel.ViewModel;
+
 @SuppressWarnings("serial")
 public class GUIFrame extends JFrame {
 
 	GUIPanel graphics = new GUIPanel();
 	GUIText text = new GUIText();
+	ViewModel vm;
 	
-	public GUIFrame() {
+	public GUIFrame(GameEngine engine) {
+		vm = new ViewModel(this, engine);
 		setBounds(100, 100, 800, 600);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		add(graphics);
