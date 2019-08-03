@@ -1,16 +1,18 @@
 package view;
 
-import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import viewmodel.ViewModel;
+
 @SuppressWarnings("serial")
 public class GUIText extends JPanel {
-	
-	public GUIText()
+	ViewModel vm;
+	public GUIText(ViewModel vm)
 	{
+		this.vm = vm;
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 4));
 	}
 	
@@ -18,7 +20,7 @@ public class GUIText extends JPanel {
 	{
 		int i = 0;
 		for (String word : list) {
-			add(new LabelIndex(word, i));
+			add(new LabelIndex(vm, word, i));
 			++i;
 		}
 	}
