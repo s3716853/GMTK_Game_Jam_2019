@@ -12,4 +12,13 @@ public interface Scene {
 	
 	public String getSceneFileName(int wordLocation);
 	
+	/**
+	 * Return signifies whether a scene continues down a path, or returns
+	 * to the main path afterwards.
+	 * eg. jokes response scenes that return to main scene after
+	 * @return 
+	 */
+	public boolean getReturn();
+	
+	
 }

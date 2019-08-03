@@ -15,30 +15,58 @@ public class SceneImpl implements Scene{
 	String textLocation;
 	String musicLocation;
 	
-	String imageFileName;
-	String textFileName;
-	String musicFileName;
+	boolean returnScene;
+	List<String> text;
+	String image;
 	
 	Map<Integer, String> wordToScene;
 	
-	public SceneImpl(String imageFile, String textFile) {
-		
-		wordToScene = new HashMap<Integer, String>();
-		
-		imageFileName = imageFile;
-		textFileName = textFile;
-		musicFileName = null;
+	public SceneImpl(String textFile) {
 		
 		imageLocation = "images/";
 		textLocation = "text/";
 		musicLocation = null;
 		
+		List<String> details = getSceneDetails(textFile);
+		wordToScene = new HashMap<Integer, String>();
+		returnScene = Boolean.parseBoolean(details.get(1).substring(1, details.get(1).length()-1));
+		
+		text = textStringToList(details.get(2));
+		image = loadImage(details.get(0).substring(1, details.get(0).length()-1));
+		
 	}
 	
-	
 	public List<String> getText() throws FileNotFoundException {
-		FileReader fileReader = new FileReader(textLocation + textFileName);
+		return text;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public String getSceneFileName(int wordLocation) {
+		return wordToScene.get(wordLocation);
+	}
+	
+	private List<String> getSceneDetails(String filename) {
+		FileReader fileReader = null;
+		try {
+			fileReader = new FileReader(textLocation + filename);
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		
+		List<String> sceneDetails = new ArrayList<String>();
+		try {
+			sceneDetails.add(bufferedReader.readLine());
+			sceneDetails.add(bufferedReader.readLine());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String line = null;
 		String text = "";
 		try {
@@ -48,7 +76,37 @@ public class SceneImpl implements Scene{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		sceneDetails.add(text);
+		
+		return sceneDetails;
+		
+	}
+	
+	private String loadImage(String imageFileName) {
+		FileReader fileReader = null;
+		try {
+			fileReader = new FileReader(imageLocation + imageFileName);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line = null;
+		String image = "";
+		try {
+			while((line = bufferedReader.readLine()) != null) {
+			    image = image + line + "\n";
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} 
+		
+		return image;
+	}
+	
+	private List<String> textStringToList(String text) {
 		
 		String[] textArray = text.split(" ");
 		List<String> wordList = new ArrayList<String>();
@@ -65,27 +123,11 @@ public class SceneImpl implements Scene{
 		}
 		
 		return wordList;
-	}
-	
-	public String getImage() throws FileNotFoundException {
-		FileReader fileReader = new FileReader(imageLocation + imageFileName);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		String line = null;
-		String image = "";
-		try {
-			while((line = bufferedReader.readLine()) != null) {
-			    image = image + line + "\n";
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
 		
-		return image;
 	}
-	
-	public String getSceneFileName(int wordLocation) {
-		return wordToScene.get(wordLocation);
+
+	@Override
+	public boolean getReturn() {
+		return returnScene;
 	}
-	
 }
