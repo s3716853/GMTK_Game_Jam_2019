@@ -18,6 +18,7 @@ public class GUIText extends JPanel {
 	
 	public void addText(List<String> list)
 	{
+		System.out.println("TEST");
 		int i = 0;
 		for (String word : list) {
 			add(new LabelIndex(vm, word, i));

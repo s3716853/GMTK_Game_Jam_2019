@@ -15,8 +15,9 @@ public class GUIFrame extends JFrame {
 	GUIText text;
 	ViewModel vm;
 	
-	public GUIFrame(GameEngine engine) {
-		vm = new ViewModel(this, engine);
+	public GUIFrame(GameEngine engine, ViewModel vm) {
+		this.vm = vm;
+		vm.setGui(this);
 		setBounds(100, 100, 800, 600);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		graphics = new GUIPanel();
@@ -26,9 +27,13 @@ public class GUIFrame extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		
+		vm.initilise();
 	}
 	
 	public void newScene(String visuals, List<String> speech) {
+		System.out.println(visuals);
+		System.out.println(speech);
 		text.addText(speech);
 		graphics.changeText(visuals);
 		revalidate();
