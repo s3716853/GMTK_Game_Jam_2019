@@ -21,10 +21,10 @@ public class ViewModel {
 
 	public void wordSelected(int wordNumber) {
 		engine.wordSelected(wordNumber);
-		gui.newScene(engine.getSceneImage(), engine.getSceneText());
+		newScene();
 	}
 	
-	public void initilise() {
+	public void newScene() {
 		gui.newScene(engine.getSceneImage(), engine.getSceneText());
 	}
 	

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JPanel;
@@ -11,9 +12,11 @@ public class GUIPanel extends JPanel {
 	JTextPane graphics = new JTextPane();
 	
 	public GUIPanel() {
-		add(graphics);
 		graphics.setEditable(false);
 		graphics.setFont(new Font("Monospaced", Font.BOLD, 14));
+		setBackground(Color.WHITE);
+		add(graphics);
+		
 	}
 	
 	public void changeText(String text) {
