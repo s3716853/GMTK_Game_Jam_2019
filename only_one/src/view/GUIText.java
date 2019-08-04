@@ -20,16 +20,23 @@ public class GUIText extends JPanel {
 		this.vm = vm;
 		setLayout(new FlowLayout(FlowLayout.LEADING, 5, 4));
 		setBackground(Color.BLACK);
-		
 	}
 
 	public void addText(List<Word> list)
 	{
-		this.removeAll();
+		/*
+		 * Reset text field
+		 */
+		removeAll();
+		
 		for (Word word : list) {
 			JLabel label = new JLabel();
 			label.setText(word.getWord());
 			label.setForeground(Color.WHITE);
+			/*
+			 * Add MouseListener to important words,
+			 * and change their font for clarity
+			 */
 			if (word.isClickable()) {
 				label.addMouseListener(new WordListener(vm, label, word.getIdentifier()));
 				label.setFont(new Font("SansSerif", Font.ITALIC, 18));
