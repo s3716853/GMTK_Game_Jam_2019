@@ -18,6 +18,7 @@ public class GUIFrame extends JFrame {
 	
 	public GUIFrame(GameEngine engine, ViewModel vm) {
 		this.vm = vm;
+		this.setTitle("Hat-Man Chronicles");
 		vm.setGui(this);
 		setBounds(100, 100, 800, 600);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
@@ -29,7 +30,7 @@ public class GUIFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		vm.initilise();
+		vm.newScene();
 	}
 	
 	public void newScene(String visuals, List<Word> list) {
