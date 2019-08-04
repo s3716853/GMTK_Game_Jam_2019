@@ -26,7 +26,7 @@ public class WordListener implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		comp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		comp.setForeground(Color.GREEN);
+		comp.setForeground(Color.GRAY);
 	}
 
 	@Override
