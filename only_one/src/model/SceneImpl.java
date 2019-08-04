@@ -15,9 +15,10 @@ public class SceneImpl implements Scene{
 	String textLocation;
 	String musicLocation;
 	
-	boolean returnScene;
+	//boolean returnScene;
 	List<Word> text;
 	String image;
+	String musicFilename;
 	
 	Map<Integer, String> wordToScene;
 	
@@ -25,12 +26,13 @@ public class SceneImpl implements Scene{
 		
 		imageLocation = "images/";
 		textLocation = "text/";
-		musicLocation = null;
+		musicLocation = "music/";
 		
 		List<String> details = getSceneDetails(textFile);
 		wordToScene = new HashMap<Integer, String>();
-		returnScene = Boolean.parseBoolean(details.get(1).substring(1, details.get(1).length()-1));
+		//returnScene = Boolean.parseBoolean(details.get(1).substring(1, details.get(1).length()-1));
 		
+		musicFilename = details.get(1).substring(1, details.get(1).length()-1);
 		text = textStringToList(details.get(2));
 		image = loadImage(details.get(0).substring(1, details.get(0).length()-1));
 		
@@ -129,6 +131,16 @@ public class SceneImpl implements Scene{
 
 	@Override
 	public boolean getReturn() {
-		return returnScene;
+		return false;
+	}
+
+	@Override
+	public String getMusicFile() {
+		return musicLocation + musicFilename;
+	}
+
+	@Override
+	public String getMusicFileName() {
+		return musicFilename;
 	}
 }
