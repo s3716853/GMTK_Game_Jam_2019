@@ -21,5 +21,9 @@ public interface Scene {
 	 */
 	public boolean getReturn();
 	
+	public String getMusicFile();
+	
+	public String getMusicFileName();
+	
 	
 }
