@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -25,11 +26,13 @@ public class WordListener implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		comp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		comp.setForeground(Color.GREEN);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		comp.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		comp.setForeground(Color.WHITE);
 	}
 
 	@Override

@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import model.GameEngine;
@@ -23,7 +25,7 @@ public class GUIFrame extends JFrame {
 		/*
 		 * Frame layout
 		 */
-		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
+		setLayout(new GridLayout(2, 1));
 		graphics = new GUIPanel();
 		text = new GUIText(vm);
 		add(graphics);
@@ -32,8 +34,12 @@ public class GUIFrame extends JFrame {
 		/*
 		 * Frame size and options
 		 */
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setTitle("Hat-Man Chronicles");
-		setBounds(100, 100, 800, 600);
+		setBounds((screenSize.width - (int)(screenSize.width/1.4)) / 2,
+				(screenSize.height - (int)(screenSize.height/1.3)) / 2,
+				(int)(screenSize.width/1.4), (int)(screenSize.height/1.3));
+		//setBounds(180, 100, 1000, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
@@ -51,6 +57,7 @@ public class GUIFrame extends JFrame {
 //		System.out.println(list);
 		text.addText(list);
 		graphics.changeText(visuals);
-		revalidate();
+		validate();
+		repaint();
 	}
 }

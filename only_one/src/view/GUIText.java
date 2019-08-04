@@ -39,10 +39,10 @@ public class GUIText extends JPanel {
 			 */
 			if (word.isClickable()) {
 				label.addMouseListener(new WordListener(vm, label, word.getIdentifier()));
-				label.setFont(new Font("SansSerif", Font.ITALIC, 18));
+				label.setFont(new Font("SansSerif", Font.ITALIC, 30));
 			}
 			else {
-				label.setFont(new Font("SansSerif", Font.BOLD, 18));
+				label.setFont(new Font("SansSerif", Font.BOLD, 30));
 			}
 			add(label);
 		}
