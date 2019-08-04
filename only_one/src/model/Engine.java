@@ -20,7 +20,7 @@ public class Engine implements GameEngine{
 	
 	public Engine(ViewModel vm) {
 		sceneBacklog = new ArrayDeque<Scene>();
-		currentScene = new SceneImpl("intro_01");
+		currentScene = new SceneImpl("main_menu");
 		
 		vm.setEngine(this);
 	}
