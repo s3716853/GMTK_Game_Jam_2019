@@ -5,23 +5,19 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+import javafx.scene.media.MediaPlayer;
 import viewmodel.ViewModel;
 
 public class Engine implements GameEngine{
 	
-	/*
-	 * backlog of scenes when you go into a conversation line
-	 * that does not go down its own path, but returns you to the
-	 * main conversation after
-	 */
-	Deque<Scene> sceneBacklog;
 	Scene currentScene = null;
-	
+	SoundManager sceneMusicPlayer;
+	SoundManager sceneEffectPlayer;
 	
 	public Engine(ViewModel vm) {
-		sceneBacklog = new ArrayDeque<Scene>();
 		currentScene = new SceneImpl("main_menu");
-		
+		sceneMusicPlayer = new SoundManagerImpl();
+		sceneEffectPlayer = new SoundManagerImpl();
 		vm.setEngine(this);
 	}
 	
@@ -52,22 +48,22 @@ public class Engine implements GameEngine{
 		
 		return text;
 	}
+	
+	public void playWordSelectSound() {
+		sceneEffectPlayer.playEffect("sound_effects/word_click.wav");
+	}
 
 	@Override
 	public void wordSelected(int wordNumber) {
 		String filename = currentScene.getSceneFileName(wordNumber);
-		if(filename == "return") {
-			Scene nextScene = sceneBacklog.pollFirst();
-			while(nextScene.getReturn() == true) {
-				nextScene = sceneBacklog.pollFirst();
-			}
-		}else {
-			Scene nextScene = new SceneImpl(filename);
-			if(nextScene.getReturn()) {
-				sceneBacklog.add(currentScene);
-			}
-			
-			currentScene = nextScene;		
+		Scene nextScene = new SceneImpl(filename);
+		playWordSelectSound();
+		
+		currentScene = nextScene;
+		
+		if(!currentScene.getMusicFileName().equals("same")) {
+			System.out.println("THIS IS RUNNING");
+			sceneMusicPlayer.playMusic(currentScene.getMusicFile());
 		}
 		
 	}

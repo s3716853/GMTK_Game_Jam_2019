@@ -16,7 +16,6 @@ public class GUIPanel extends JPanel {
 		graphics.setFont(new Font("Monospaced", Font.BOLD, 14));
 		setBackground(Color.WHITE);
 		add(graphics);
-		
 	}
 	
 	public void changeText(String text) {
