@@ -7,10 +7,6 @@ public class ViewModel {
 	GUIFrame gui;
 	GameEngine engine;
 	
-	public ViewModel() {
-
-	}
-	
 	public void setEngine(GameEngine engine) {
 		this.engine = engine;
 	}
@@ -19,12 +15,16 @@ public class ViewModel {
 		this.gui = gui;
 	}
 
+	/*
+	 * Sends the ID for the selected word, and sends
+	 * the resulting scene back to the GUI
+	 */
 	public void wordSelected(int wordNumber) {
 		engine.wordSelected(wordNumber);
-		gui.newScene(engine.getSceneImage(), engine.getSceneText());
+		newScene();
 	}
 	
-	public void initilise() {
+	public void newScene() {
 		gui.newScene(engine.getSceneImage(), engine.getSceneText());
 	}
 	
