@@ -35,7 +35,7 @@ public class GUIFrame extends JFrame {
 		 * Frame size and options
 		 */
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setTitle("Hat-Man Chronicles");
+		setTitle("0utsider");
 		setBounds((screenSize.width - (int)(screenSize.width/1.4)) / 2,
 				(screenSize.height - (int)(screenSize.height/1.3)) / 2,
 				(int)(screenSize.width/1.4), (int)(screenSize.height/1.3));
